@@ -1,4 +1,3 @@
-
 package Vista;
 
 import Modelo.Detalle;
@@ -12,7 +11,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class Inventario extends javax.swing.JFrame {
 
     Productos pro = new Productos();
@@ -22,13 +20,14 @@ public class Inventario extends javax.swing.JFrame {
     VentaRealizadaINV VINV = new VentaRealizadaINV();
     Detalle Dv = new Detalle();
     int item;
-    
+
     public Inventario() {
         initComponents();
         this.setLocationRelativeTo(null);
         txtIDpro.setVisible(false);
     }
-    public void ListarProductos(){
+
+    public void ListarProductos() {
         List<Productos> Listarpro = proINV.ListarProductos();
         modelo = (DefaultTableModel) TableProducto.getModel();
         Object[] ob = new Object[8];
@@ -42,22 +41,19 @@ public class Inventario extends javax.swing.JFrame {
             ob[6] = Listarpro.get(i).getStock();
             ob[7] = Listarpro.get(i).getFechaCreacion();
             modelo.addRow(ob);
-            
+
             TableProducto.setModel(modelo);
-                
 
         }
     }
 
-    public void LimpiarTable(){
-    for (int i = 0; i <modelo.getRowCount();i++){
-        modelo.removeRow(i);
-        i = i-1;
+    public void LimpiarTable() {
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i = i - 1;
+        }
     }
-    }
-    
-    
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -557,14 +553,14 @@ public class Inventario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-     
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void GuardarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarproductoActionPerformed
         // TODO add your handling code here
-        if (!"".equals(txtNomPro.getText()) || !"".equals(txtRefPro.getText()) || !"".equals(txtPrepro.getText()) || !"".equals(txtPesoPro.getText()) || !"".equals(txtCatPro.getText()) || !"".equals(txtstPro.getText()) || !"".equals(txtfcpro.getText())){
+        if (!"".equals(txtNomPro.getText()) || !"".equals(txtRefPro.getText()) || !"".equals(txtPrepro.getText()) || !"".equals(txtPesoPro.getText()) || !"".equals(txtCatPro.getText()) || !"".equals(txtstPro.getText()) || !"".equals(txtfcpro.getText())) {
             pro.setNombreProducto(txtNomPro.getText());
             pro.setReferencia(txtRefPro.getText());
             pro.setPrecio(Integer.parseInt(txtPrepro.getText()));
@@ -577,7 +573,7 @@ public class Inventario extends javax.swing.JFrame {
             LimpiarProducto();
             ListarProductos();
             JOptionPane.showMessageDialog(null, "Producto Guardado");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Los Campos Estan Vacios");
     }//GEN-LAST:event_GuardarproductoActionPerformed
     }
@@ -599,53 +595,53 @@ public class Inventario extends javax.swing.JFrame {
     private void TableProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableProductoMouseClicked
         // TODO add your handling code here:
         int fila = TableProducto.rowAtPoint(evt.getPoint());
-        txtIDpro.setText(TableProducto.getValueAt(fila,0).toString());
-        txtNomPro.setText(TableProducto.getValueAt(fila,1).toString());
-        txtRefPro.setText(TableProducto.getValueAt(fila,2).toString());
-        txtPrepro.setText(TableProducto.getValueAt(fila,3).toString());
-        txtPesoPro.setText(TableProducto.getValueAt(fila,4).toString());
-        txtCatPro.setText(TableProducto.getValueAt(fila,5).toString());
-        txtstPro.setText(TableProducto.getValueAt(fila,6).toString());
-        txtfcpro.setText(TableProducto.getValueAt(fila,7).toString());
-        
+        txtIDpro.setText(TableProducto.getValueAt(fila, 0).toString());
+        txtNomPro.setText(TableProducto.getValueAt(fila, 1).toString());
+        txtRefPro.setText(TableProducto.getValueAt(fila, 2).toString());
+        txtPrepro.setText(TableProducto.getValueAt(fila, 3).toString());
+        txtPesoPro.setText(TableProducto.getValueAt(fila, 4).toString());
+        txtCatPro.setText(TableProducto.getValueAt(fila, 5).toString());
+        txtstPro.setText(TableProducto.getValueAt(fila, 6).toString());
+        txtfcpro.setText(TableProducto.getValueAt(fila, 7).toString());
+
     }//GEN-LAST:event_TableProductoMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        if (!"".equals(txtIDpro.getText())){
-        int pregunta = JOptionPane.showConfirmDialog(null, "Esta Seguro De Elimnar El Producto");
-        if(pregunta==0) {
-            int IDproducto = Integer.parseInt(txtIDpro.getText());
-            proINV.EliminarProducto(IDproducto);
-            LimpiarTable();
-            LimpiarProducto();
-            ListarProductos();
-        }
+        if (!"".equals(txtIDpro.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta Seguro De Elimnar El Producto");
+            if (pregunta == 0) {
+                int IDproducto = Integer.parseInt(txtIDpro.getText());
+                proINV.EliminarProducto(IDproducto);
+                LimpiarTable();
+                LimpiarProducto();
+                ListarProductos();
+            }
     }//GEN-LAST:event_btnEliminarActionPerformed
     }
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
         if ("".equals(txtIDpro.getText())) {
-         JOptionPane.showMessageDialog(null, "Seleccione Una Fila");
-        }else{
-            
-            if(!"".equals(txtNomPro.getText()) || !"".equals(txtRefPro.getText()) || !"".equals(txtPrepro.getText())|| !"".equals(txtPesoPro.getText())|| !"".equals(txtCatPro.getText())|| !"".equals(txtstPro.getText())|| !"".equals(txtfcpro.getText())){
-            pro.setNombreProducto(txtNomPro.getText());
-            pro.setReferencia(txtRefPro.getText());
-            pro.setPrecio(Integer.parseInt(txtPrepro.getText()));
-            pro.setPeso(Integer.parseInt(txtPesoPro.getText()));
-            pro.setCategoria(txtCatPro.getText());
-            pro.setStock(Integer.parseInt(txtstPro.getText()));
-            pro.setFechaCreacion(txtfcpro.getText());
-            pro.setIDproducto(Integer.parseInt(txtIDpro.getText()));
-            proINV.EditarProducto(pro);
-            JOptionPane.showMessageDialog(null, "Producto Actualizado");
-            LimpiarTable();
-            LimpiarProducto();
-            ListarProductos();
-            }else{
+            JOptionPane.showMessageDialog(null, "Seleccione Una Fila");
+        } else {
+
+            if (!"".equals(txtNomPro.getText()) || !"".equals(txtRefPro.getText()) || !"".equals(txtPrepro.getText()) || !"".equals(txtPesoPro.getText()) || !"".equals(txtCatPro.getText()) || !"".equals(txtstPro.getText()) || !"".equals(txtfcpro.getText())) {
+                pro.setNombreProducto(txtNomPro.getText());
+                pro.setReferencia(txtRefPro.getText());
+                pro.setPrecio(Integer.parseInt(txtPrepro.getText()));
+                pro.setPeso(Integer.parseInt(txtPesoPro.getText()));
+                pro.setCategoria(txtCatPro.getText());
+                pro.setStock(Integer.parseInt(txtstPro.getText()));
+                pro.setFechaCreacion(txtfcpro.getText());
+                pro.setIDproducto(Integer.parseInt(txtIDpro.getText()));
+                proINV.EditarProducto(pro);
+                JOptionPane.showMessageDialog(null, "Producto Actualizado");
+                LimpiarTable();
+                LimpiarProducto();
+                ListarProductos();
+            } else {
                 JOptionPane.showMessageDialog(null, "Los Campos Estan Vacios");
-        }
+            }
     }//GEN-LAST:event_btnEditarActionPerformed
     }
     private void GenerarventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarventaActionPerformed
@@ -656,16 +652,16 @@ public class Inventario extends javax.swing.JFrame {
 
     private void txtcantidadventaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadventaKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
-            if(!"".equals(txtcantidadventa.getText())){
-                int IDprod =Integer.parseInt(txtIDventa.getText());
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (!"".equals(txtcantidadventa.getText())) {
+                int IDprod = Integer.parseInt(txtIDventa.getText());
                 String NombreProd = (txtnproventa.getText());
-                String Refe= (txtrefventa.getText());
-                int Prec =Integer.parseInt(txtpreventa.getText());
-                int Cantidad =Integer.parseInt(txtcantidadventa.getText());
+                String Refe = (txtrefventa.getText());
+                int Prec = Integer.parseInt(txtpreventa.getText());
+                int Cantidad = Integer.parseInt(txtcantidadventa.getText());
                 int stock = Integer.parseInt(txtStock.getText());
-                if (stock >=Cantidad) {
-                    item = item +1;
+                if (stock >= Cantidad) {
+                    item = item + 1;
                     modelo = (DefaultTableModel) TableVenta.getModel();
                     ArrayList Lista = new ArrayList();
                     Lista.add(item);
@@ -681,10 +677,10 @@ public class Inventario extends javax.swing.JFrame {
                     O[3] = Lista.get(4);
                     modelo.addRow(O);
                     TableVenta.setModel(modelo);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "No Es Posible Realizar La Venta");
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
             }
         }
@@ -697,23 +693,23 @@ public class Inventario extends javax.swing.JFrame {
     private void txtIDventaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDventaKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if(!"".equals(txtIDventa.getText())) {
+            if (!"".equals(txtIDventa.getText())) {
                 int IDproducto = Integer.parseInt(txtIDventa.getText());
                 pro = proINV.BuscarPro(IDproducto);
-                if(pro.getNombreProducto() !=null){
-                    txtnproventa.setText(""+pro.getNombreProducto());
-                    txtrefventa.setText(""+pro.getReferencia());
-                    txtpreventa.setText(""+pro.getPrecio());
-                    txtStock.setText(""+pro.getStock());
+                if (pro.getNombreProducto() != null) {
+                    txtnproventa.setText("" + pro.getNombreProducto());
+                    txtrefventa.setText("" + pro.getReferencia());
+                    txtpreventa.setText("" + pro.getPrecio());
+                    txtStock.setText("" + pro.getStock());
                     txtcantidadventa.requestFocus();
-                }else{
+                } else {
                     txtnproventa.setText("");
                     txtrefventa.setText("");
                     txtpreventa.setText("");
                     txtStock.setText("");
                     txtIDventa.setText("");
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Ingrese El ID Del Producto");
                 txtIDventa.requestFocus();
             }
@@ -723,25 +719,27 @@ public class Inventario extends javax.swing.JFrame {
     private void txtnproventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnproventaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnproventaActionPerformed
-          private void LimpiarVenta(){
-           txtIDventa.setText("");
-           txtcantidadventa.setText("");
-           txtnproventa.setText("");
-           txtrefventa.setText("");
-           txtpreventa.setText("");
-           txtStock.setText("");
-        }
-       private void RegistrarVentaRealizada(){
-       String Nombre_pvr = txtnproventa.getText();
-       String Referencia_pvr = txtrefventa.getText();
-       int Precio_pvr = Integer.parseInt(txtpreventa.getText());
-       v.setNombre_pvr(Nombre_pvr);
-       v.setReferencia_pvr(Referencia_pvr);
-       v.setPrecio_pvr(Precio_pvr);
-       VINV.RegistrarVenta(v);
-       }
-       private void RegistrarDetalle(){
-        for (int i = 0; i <TableVenta.getRowCount(); i++){
+    private void LimpiarVenta() {
+        txtIDventa.setText("");
+        txtcantidadventa.setText("");
+        txtnproventa.setText("");
+        txtrefventa.setText("");
+        txtpreventa.setText("");
+        txtStock.setText("");
+    }
+
+    private void RegistrarVentaRealizada() {
+        String Nombre_pvr = txtnproventa.getText();
+        String Referencia_pvr = txtrefventa.getText();
+        int Precio_pvr = Integer.parseInt(txtpreventa.getText());
+        v.setNombre_pvr(Nombre_pvr);
+        v.setReferencia_pvr(Referencia_pvr);
+        v.setPrecio_pvr(Precio_pvr);
+        VINV.RegistrarVenta(v);
+    }
+
+    private void RegistrarDetalle() {
+        for (int i = 0; i < TableVenta.getRowCount(); i++) {
             int IDprod = Integer.parseInt(TableVenta.getValueAt(i, 0).toString());
             int Cant = Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
             int Prec = Integer.parseInt(TableVenta.getValueAt(i, 3).toString());
@@ -752,17 +750,15 @@ public class Inventario extends javax.swing.JFrame {
             Dv.setID_Venta(IDV);
             VINV.RegistrarDetalle(Dv);
         }
-       }
-    
-      
-          
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        
-        /* Create and display the form */
+
+ /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inventario().setVisible(true);
@@ -823,16 +819,15 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JTextField txtrefventa;
     private javax.swing.JTextField txtstPro;
     // End of variables declaration//GEN-END:variables
-private void LimpiarProducto(){
-    txtIDpro.setText("");
-    txtNomPro.setText("");
-    txtRefPro.setText("");
-    txtPrepro.setText("");
-    txtPesoPro.setText("");
-    txtCatPro.setText("");
-    txtstPro.setText("");
-    txtfcpro.setText("");
-}
+private void LimpiarProducto() {
+        txtIDpro.setText("");
+        txtNomPro.setText("");
+        txtRefPro.setText("");
+        txtPrepro.setText("");
+        txtPesoPro.setText("");
+        txtCatPro.setText("");
+        txtstPro.setText("");
+        txtfcpro.setText("");
+    }
 
 }
-
